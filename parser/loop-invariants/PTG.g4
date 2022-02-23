@@ -6,21 +6,26 @@ entry: bciKey ':' '(' vars   ')' ('(' fields ')')?;
 
 vars: (varentry (',' varentry)*)?;
 varentry : bciKey ':' ( (ciBciEntry) (' ' (ciBciEntry))*);
+
 fields: (fieldentry (',' fieldentry)*)?;
-fieldentry : bciKeyField '.' field ':' ( (bciVal) (' ' bciVal)*);
+fieldentry : bciKey '('  (field) ((',' (field))*) ')';
+
+field : fieldKey ':'  (ciBciEntry) (' ' (ciBciEntry))*;
+
 ciBciEntry: ciEntries | STRING | CONST | GLOBAL | NIL;
+
 ciEntries: callerIndex '-' ( (bciVal)('.' (bciVal))*);
 
 callerIndex : NUMS;
-bciKey: ALL | NUMS;
+bciKey : NUMS;
+bciKey2: ALL | NUMS;
 bciVal : NUMS | NIL;
-bciKeyField: NUMS;
-field : ALPHAS;
+fieldKey: ALPHAS;
 
-NIL : 'n';
-STRING: 's';
-CONST: 'c';
-GLOBAL: 'g';
+NIL : 'N';
+STRING: 'S';
+CONST: 'C';
+GLOBAL: 'G';
 NUMS: [0-9]+;
 ALPHAS: [A-Za-z]+;
 NEWLINE: [\r\n]+;

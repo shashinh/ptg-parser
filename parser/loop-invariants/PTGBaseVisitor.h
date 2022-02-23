@@ -39,6 +39,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitField(PTGParser::FieldContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitCiBciEntry(PTGParser::CiBciEntryContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -55,15 +59,15 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitBciKey2(PTGParser::BciKey2Context *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitBciVal(PTGParser::BciValContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitBciKeyField(PTGParser::BciKeyFieldContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual antlrcpp::Any visitField(PTGParser::FieldContext *ctx) override {
+  virtual antlrcpp::Any visitFieldKey(PTGParser::FieldKeyContext *ctx) override {
     return visitChildren(ctx);
   }
 

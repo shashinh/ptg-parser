@@ -16,12 +16,13 @@ struct Entry {
     bool isConstant = false;
     bool isNull = false;
     bool isGlobal = false;
+    bool isRef = false;
 };
 
 struct StaticPtg {
     //key - stack slot number (i.e. a unique identifier for the variable in a given method)
     //value - a set of Entrys
-    std::map <int, std::set<Entry>> varsMap;
-    std::map <int, std::set<Entry>> fieldsMap;
+    std::map <int, std::vector<Entry>> varsMap;
+    std::map <int, std::vector<Entry>> fieldsMap;
 };
 

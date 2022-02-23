@@ -19,8 +19,9 @@ public:
 
   enum {
     RulePtg = 0, RuleEntry = 1, RuleVars = 2, RuleVarentry = 3, RuleFields = 4, 
-    RuleFieldentry = 5, RuleCiBciEntry = 6, RuleCiEntries = 7, RuleCallerIndex = 8, 
-    RuleBciKey = 9, RuleBciVal = 10, RuleBciKeyField = 11, RuleField = 12
+    RuleFieldentry = 5, RuleField = 6, RuleCiBciEntry = 7, RuleCiEntries = 8, 
+    RuleCallerIndex = 9, RuleBciKey = 10, RuleBciKey2 = 11, RuleBciVal = 12, 
+    RuleFieldKey = 13
   };
 
   explicit PTGParser(antlr4::TokenStream *input);
@@ -39,13 +40,14 @@ public:
   class VarentryContext;
   class FieldsContext;
   class FieldentryContext;
+  class FieldContext;
   class CiBciEntryContext;
   class CiEntriesContext;
   class CallerIndexContext;
   class BciKeyContext;
+  class BciKey2Context;
   class BciValContext;
-  class BciKeyFieldContext;
-  class FieldContext; 
+  class FieldKeyContext; 
 
   class  PtgContext : public antlr4::ParserRuleContext {
   public:
@@ -125,10 +127,9 @@ public:
   public:
     FieldentryContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    BciKeyFieldContext *bciKeyField();
-    FieldContext *field();
-    std::vector<BciValContext *> bciVal();
-    BciValContext* bciVal(size_t i);
+    BciKeyContext *bciKey();
+    std::vector<FieldContext *> field();
+    FieldContext* field(size_t i);
 
 
     virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -136,6 +137,21 @@ public:
   };
 
   FieldentryContext* fieldentry();
+
+  class  FieldContext : public antlr4::ParserRuleContext {
+  public:
+    FieldContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    FieldKeyContext *fieldKey();
+    std::vector<CiBciEntryContext *> ciBciEntry();
+    CiBciEntryContext* ciBciEntry(size_t i);
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  FieldContext* field();
 
   class  CiBciEntryContext : public antlr4::ParserRuleContext {
   public:
@@ -186,7 +202,6 @@ public:
   public:
     BciKeyContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *ALL();
     antlr4::tree::TerminalNode *NUMS();
 
 
@@ -195,6 +210,20 @@ public:
   };
 
   BciKeyContext* bciKey();
+
+  class  BciKey2Context : public antlr4::ParserRuleContext {
+  public:
+    BciKey2Context(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ALL();
+    antlr4::tree::TerminalNode *NUMS();
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  BciKey2Context* bciKey2();
 
   class  BciValContext : public antlr4::ParserRuleContext {
   public:
@@ -210,22 +239,9 @@ public:
 
   BciValContext* bciVal();
 
-  class  BciKeyFieldContext : public antlr4::ParserRuleContext {
+  class  FieldKeyContext : public antlr4::ParserRuleContext {
   public:
-    BciKeyFieldContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *NUMS();
-
-
-    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-   
-  };
-
-  BciKeyFieldContext* bciKeyField();
-
-  class  FieldContext : public antlr4::ParserRuleContext {
-  public:
-    FieldContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    FieldKeyContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *ALPHAS();
 
@@ -234,7 +250,7 @@ public:
    
   };
 
-  FieldContext* field();
+  FieldKeyContext* fieldKey();
 
 
 private:
