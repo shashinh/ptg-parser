@@ -2,6 +2,7 @@
 // Generated from PTG.g4 by ANTLR 4.9.2
 
 
+#include "PTGListener.h"
 #include "PTGVisitor.h"
 
 #include "PTGParser.h"
@@ -56,6 +57,18 @@ PTGParser::EntryContext* PTGParser::PtgContext::entry(size_t i) {
 
 size_t PTGParser::PtgContext::getRuleIndex() const {
   return PTGParser::RulePtg;
+}
+
+void PTGParser::PtgContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterPtg(this);
+}
+
+void PTGParser::PtgContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitPtg(this);
 }
 
 
@@ -145,6 +158,18 @@ size_t PTGParser::EntryContext::getRuleIndex() const {
   return PTGParser::RuleEntry;
 }
 
+void PTGParser::EntryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterEntry(this);
+}
+
+void PTGParser::EntryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitEntry(this);
+}
+
 
 antlrcpp::Any PTGParser::EntryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<PTGVisitor*>(visitor))
@@ -217,6 +242,18 @@ PTGParser::VarentryContext* PTGParser::VarsContext::varentry(size_t i) {
 
 size_t PTGParser::VarsContext::getRuleIndex() const {
   return PTGParser::RuleVars;
+}
+
+void PTGParser::VarsContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterVars(this);
+}
+
+void PTGParser::VarsContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitVars(this);
 }
 
 
@@ -295,6 +332,18 @@ size_t PTGParser::VarentryContext::getRuleIndex() const {
   return PTGParser::RuleVarentry;
 }
 
+void PTGParser::VarentryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterVarentry(this);
+}
+
+void PTGParser::VarentryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitVarentry(this);
+}
+
 
 antlrcpp::Any PTGParser::VarentryContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<PTGVisitor*>(visitor))
@@ -365,6 +414,18 @@ PTGParser::FieldentryContext* PTGParser::FieldsContext::fieldentry(size_t i) {
 
 size_t PTGParser::FieldsContext::getRuleIndex() const {
   return PTGParser::RuleFields;
+}
+
+void PTGParser::FieldsContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFields(this);
+}
+
+void PTGParser::FieldsContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFields(this);
 }
 
 
@@ -441,6 +502,18 @@ PTGParser::FieldContext* PTGParser::FieldentryContext::field(size_t i) {
 
 size_t PTGParser::FieldentryContext::getRuleIndex() const {
   return PTGParser::RuleFieldentry;
+}
+
+void PTGParser::FieldentryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFieldentry(this);
+}
+
+void PTGParser::FieldentryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFieldentry(this);
 }
 
 
@@ -520,6 +593,18 @@ PTGParser::CiBciEntryContext* PTGParser::FieldContext::ciBciEntry(size_t i) {
 
 size_t PTGParser::FieldContext::getRuleIndex() const {
   return PTGParser::RuleField;
+}
+
+void PTGParser::FieldContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterField(this);
+}
+
+void PTGParser::FieldContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitField(this);
 }
 
 
@@ -604,6 +689,18 @@ tree::TerminalNode* PTGParser::CiBciEntryContext::NIL() {
 
 size_t PTGParser::CiBciEntryContext::getRuleIndex() const {
   return PTGParser::RuleCiBciEntry;
+}
+
+void PTGParser::CiBciEntryContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCiBciEntry(this);
+}
+
+void PTGParser::CiBciEntryContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCiBciEntry(this);
 }
 
 
@@ -701,6 +798,18 @@ size_t PTGParser::CiEntriesContext::getRuleIndex() const {
   return PTGParser::RuleCiEntries;
 }
 
+void PTGParser::CiEntriesContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCiEntries(this);
+}
+
+void PTGParser::CiEntriesContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCiEntries(this);
+}
+
 
 antlrcpp::Any PTGParser::CiEntriesContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<PTGVisitor*>(visitor))
@@ -769,6 +878,18 @@ size_t PTGParser::CallerIndexContext::getRuleIndex() const {
   return PTGParser::RuleCallerIndex;
 }
 
+void PTGParser::CallerIndexContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterCallerIndex(this);
+}
+
+void PTGParser::CallerIndexContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitCallerIndex(this);
+}
+
 
 antlrcpp::Any PTGParser::CallerIndexContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<PTGVisitor*>(visitor))
@@ -816,6 +937,18 @@ tree::TerminalNode* PTGParser::BciKeyContext::NUMS() {
 
 size_t PTGParser::BciKeyContext::getRuleIndex() const {
   return PTGParser::RuleBciKey;
+}
+
+void PTGParser::BciKeyContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBciKey(this);
+}
+
+void PTGParser::BciKeyContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBciKey(this);
 }
 
 
@@ -869,6 +1002,18 @@ tree::TerminalNode* PTGParser::BciKey2Context::NUMS() {
 
 size_t PTGParser::BciKey2Context::getRuleIndex() const {
   return PTGParser::RuleBciKey2;
+}
+
+void PTGParser::BciKey2Context::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBciKey2(this);
+}
+
+void PTGParser::BciKey2Context::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBciKey2(this);
 }
 
 
@@ -934,6 +1079,18 @@ size_t PTGParser::BciValContext::getRuleIndex() const {
   return PTGParser::RuleBciVal;
 }
 
+void PTGParser::BciValContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterBciVal(this);
+}
+
+void PTGParser::BciValContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitBciVal(this);
+}
+
 
 antlrcpp::Any PTGParser::BciValContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<PTGVisitor*>(visitor))
@@ -991,6 +1148,18 @@ tree::TerminalNode* PTGParser::FieldKeyContext::ALPHAS() {
 
 size_t PTGParser::FieldKeyContext::getRuleIndex() const {
   return PTGParser::RuleFieldKey;
+}
+
+void PTGParser::FieldKeyContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterFieldKey(this);
+}
+
+void PTGParser::FieldKeyContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<PTGListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitFieldKey(this);
 }
 
 
