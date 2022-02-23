@@ -6,6 +6,7 @@
 #include "PTGLexer.h"
 #include "PTGParser.h"
 #include "structs.h"
+#include "PTGBuilderVisitor.h"
 
 using namespace std;
 using namespace antlr4;
