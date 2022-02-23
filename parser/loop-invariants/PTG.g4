@@ -18,7 +18,6 @@ ciEntries: callerIndex '-' ( (bciVal)('.' (bciVal))*);
 
 callerIndex : NUMS;
 bciKey : NUMS;
-bciKey2: ALL | NUMS;
 bciVal : NUMS | NIL;
 fieldKey: ALPHAS;
 
