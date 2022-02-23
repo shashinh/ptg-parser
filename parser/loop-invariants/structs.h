@@ -3,22 +3,25 @@
 #include <map>
 #include <set>
 
-struct StaticPtg {
+struct StaticPtg2 {
     std::map <std::string, std::set<std::string>> varsMap;
     std::map <std::string, std::set<std::string>> fieldsMap;
 };
 
 
 struct Entry {
+    int caller;
     int bci;
-    bool isString;
-    bool isConstant;
-    bool isNull;
-    bool isGlobal;
+    bool isString = false;
+    bool isConstant = false;
+    bool isNull = false;
+    bool isGlobal = false;
 };
 
-struct StaticPtg2 {
-    std::map <std::string, std::set<Entry>> varsMap;
-    std::map <std::string, std::set<Entry>> fieldsMap;
+struct StaticPtg {
+    //key - stack slot number (i.e. a unique identifier for the variable in a given method)
+    //value - a set of Entrys
+    std::map <int, std::set<Entry>> varsMap;
+    std::map <int, std::set<Entry>> fieldsMap;
 };
 

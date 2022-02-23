@@ -33,6 +33,8 @@ public:
 
     virtual antlrcpp::Any visitCiBciEntry(PTGParser::CiBciEntryContext *context) = 0;
 
+    virtual antlrcpp::Any visitCiEntries(PTGParser::CiEntriesContext *context) = 0;
+
     virtual antlrcpp::Any visitCallerIndex(PTGParser::CallerIndexContext *context) = 0;
 
     virtual antlrcpp::Any visitBciKey(PTGParser::BciKeyContext *context) = 0;

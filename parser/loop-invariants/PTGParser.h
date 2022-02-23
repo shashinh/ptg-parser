@@ -13,14 +13,14 @@ class  PTGParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, NIL = 9, STRING = 10, CONST = 11, NUMS = 12, ALPHAS = 13, 
-    NEWLINE = 14, ALL = 15
+    T__7 = 8, NIL = 9, STRING = 10, CONST = 11, GLOBAL = 12, NUMS = 13, 
+    ALPHAS = 14, NEWLINE = 15, ALL = 16
   };
 
   enum {
     RulePtg = 0, RuleEntry = 1, RuleVars = 2, RuleVarentry = 3, RuleFields = 4, 
-    RuleFieldentry = 5, RuleCiBciEntry = 6, RuleCallerIndex = 7, RuleBciKey = 8, 
-    RuleBciVal = 9, RuleBciKeyField = 10, RuleField = 11
+    RuleFieldentry = 5, RuleCiBciEntry = 6, RuleCiEntries = 7, RuleCallerIndex = 8, 
+    RuleBciKey = 9, RuleBciVal = 10, RuleBciKeyField = 11, RuleField = 12
   };
 
   explicit PTGParser(antlr4::TokenStream *input);
@@ -40,6 +40,7 @@ public:
   class FieldsContext;
   class FieldentryContext;
   class CiBciEntryContext;
+  class CiEntriesContext;
   class CallerIndexContext;
   class BciKeyContext;
   class BciValContext;
@@ -140,11 +141,10 @@ public:
   public:
     CiBciEntryContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    CallerIndexContext *callerIndex();
-    std::vector<BciValContext *> bciVal();
-    BciValContext* bciVal(size_t i);
+    CiEntriesContext *ciEntries();
     antlr4::tree::TerminalNode *STRING();
     antlr4::tree::TerminalNode *CONST();
+    antlr4::tree::TerminalNode *GLOBAL();
     antlr4::tree::TerminalNode *NIL();
 
 
@@ -153,6 +153,21 @@ public:
   };
 
   CiBciEntryContext* ciBciEntry();
+
+  class  CiEntriesContext : public antlr4::ParserRuleContext {
+  public:
+    CiEntriesContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    CallerIndexContext *callerIndex();
+    std::vector<BciValContext *> bciVal();
+    BciValContext* bciVal(size_t i);
+
+
+    virtual antlrcpp::Any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+   
+  };
+
+  CiEntriesContext* ciEntries();
 
   class  CallerIndexContext : public antlr4::ParserRuleContext {
   public:

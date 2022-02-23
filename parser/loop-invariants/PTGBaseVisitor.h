@@ -43,6 +43,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual antlrcpp::Any visitCiEntries(PTGParser::CiEntriesContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual antlrcpp::Any visitCallerIndex(PTGParser::CallerIndexContext *ctx) override {
     return visitChildren(ctx);
   }
