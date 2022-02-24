@@ -5,7 +5,6 @@
 #include "antlr4-runtime.h"
 #include "PTGLexer.h"
 #include "PTGParser.h"
-#include "structs.h"
 #include "PTGBuilderVisitor.h"
 
 
@@ -69,6 +68,9 @@ int main(int argc, char* argv[]) {
 		while(it != res.end()) {
 			cout << "bci : " << it->first << endl;
 			auto vars = it->second.varsMap;
+			auto fields = it->second.fieldsMap;
+
+			cout << "ROOTs" << endl;
 		std::map<int, std::vector<Entry>> :: iterator vIt = vars.begin();
 		while(vIt != vars.end()) {
 			cout << "\t" << vIt->first << ": ";
@@ -85,6 +87,32 @@ int main(int argc, char* argv[]) {
 
 				cout << endl;
 			vIt++;
+		}
+
+			cout << "FIELDs" << endl;
+		std::map<int, std::map<std::string, std::vector<Entry>>> :: iterator fIt = fields.begin();
+		while(fIt != fields.end()) {
+			cout << "\t" << fIt->first << ": " ;
+			auto vals = fIt->second;
+			auto fkIt = vals.begin();
+			while(fkIt != vals.end()) {
+				cout << "\t\t" << fkIt->first << ": ";
+				for(auto entry : fkIt->second) {
+					if(entry.isNull) cout << " n";
+					else if(entry.isConstant) cout << " c";
+					else if(entry.isGlobal) cout << " g";
+					else if(entry.isString) cout << " s";
+					else {
+						cout << " " << entry.caller << "-" << entry.bci;
+					}
+
+				}
+
+				cout << "\t";
+				fkIt++;
+			}
+			cout << endl;
+			fIt++;
 		}
 
 	//       auto fields = it->second.fieldsMap;
