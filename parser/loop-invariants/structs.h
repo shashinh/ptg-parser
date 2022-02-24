@@ -3,12 +3,6 @@
 #include <map>
 #include <set>
 
-struct StaticPtg2 {
-    std::map <std::string, std::set<std::string>> varsMap;
-    std::map <std::string, std::set<std::string>> fieldsMap;
-};
-
-
 struct Entry {
     int caller;
     int bci;
@@ -21,8 +15,11 @@ struct Entry {
 
 struct StaticPtg {
     //key - stack slot number (i.e. a unique identifier for the variable in a given method)
-    //value - a set of Entrys
-    std::map <int, std::vector<Entry>> varsMap;
-    std::map <int, std::vector<Entry>> fieldsMap;
+    //value - a list of Entrys (this should ideally be a set, but requires a comparator - TODO later)
+    std::map <int, std::vector<Entry> > varsMap;
+
+    //key - a bci uniquely identifying an object
+    //key - a map of field names to Entrys
+    std::map <int, std::map <std::string, std::vector <Entry>>> fieldsMap;
 };
 

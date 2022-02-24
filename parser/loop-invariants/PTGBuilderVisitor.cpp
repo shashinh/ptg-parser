@@ -20,9 +20,9 @@ antlrcpp::Any PTGBuilderVisitor::visitPtg(PTGParser::PtgContext *ctx)
 		int bci = entry->bciKey()->accept(this).as<int>();
 		//cout << "completed bciKey()->accept(this)" << endl;
 		std::map<int, std::vector<Entry>> varsMap = entry->vars()->accept(this).as<std::map<int, std::vector<Entry>>>();
-		std::map<int, std::vector<Entry>> fieldsMap;
-		if(entry->fields())
-			fieldsMap = entry->fields()->accept(this).as<std::map<int, std::vector<Entry>>>();
+    std::map <int, std::map <std::string, std::vector <Entry>>> fieldsMap;
+		//if(entry->fields())
+		//	fieldsMap = entry->fields()->accept(this).as<std::map<int, std::vector<Entry>>>();
 		StaticPtg ptg = {varsMap, fieldsMap};
 		staticKeyedPtg.insert(std::pair <int, StaticPtg> (bci, ptg));
 
@@ -79,6 +79,11 @@ antlrcpp::Any PTGBuilderVisitor::visitVars(PTGParser::VarsContext *ctx)
 
 antlrcpp::Any PTGBuilderVisitor::visitFields(PTGParser::FieldsContext *ctx)
 {
+    std::map <int, std::map <std::string, std::vector <Entry>>> fieldsMap;
+	
+
+
+
 	// std::map<string, std::set<string>> fieldsMap;
 	// for(auto fieldEntry : ctx->fieldentry()){
 	// 	string fieldReceiver = fieldEntry->bciKeyField()->accept(this).as<string>();
