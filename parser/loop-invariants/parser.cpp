@@ -98,7 +98,7 @@ int main(int argc, char *argv[])
 				vIt++;
 			}
 
-			cout << "FIELDs" << endl;
+			cout << "HEAP" << endl;
 			std::map<int, std::map<std::string, std::vector<Entry>>>::iterator fIt = fields.begin();
 			while (fIt != fields.end())
 			{
@@ -136,7 +136,7 @@ int main(int argc, char *argv[])
 	}
 	catch (invalid_argument &ex)
 	{
-		cout << ex.what() << endl;
+		cout << "ruh roh! : " << ex.what() << endl;
 		return 1;
 	}
 }
