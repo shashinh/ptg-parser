@@ -38,27 +38,27 @@ std::vector<Entry> PTGBuilderVisitor::processciBciEntrys(std::vector<PTGParser::
 			
 			if (entry->STRING() != NULL) {
 				cout << "varEntry is string" << endl;
-				varEntry.isString = true;
+				varEntry.type = String;
 				entries.push_back(varEntry);
 			} else if (entry->CONST() != NULL) {
 				cout << "varEntry is const" << endl;
-				varEntry.isConstant = true;
+				varEntry.type = Constant;
 				entries.push_back(varEntry);
 			} else if (entry->GLOBAL() != NULL) {
 				cout << "varEntry is global" << endl;
-				varEntry.isGlobal = true;
+				varEntry.type = Global;
 				entries.push_back(varEntry);
 			} else if (entry->NIL() != NULL) {
 				cout << "varEntry is null" << endl;
 				//the value is a NIL;
-				varEntry.isNull = true;
+				varEntry.type = Null;
 				entries.push_back(varEntry);
 			} else {
 				int callerIndex = entry->ciEntries()->callerIndex()->accept(this).as<int>();
 		cout << "\t there are " << entry->ciEntries()->bciVal().size() << " entries in entry->ciEntries()->bciVal()" << endl;
 				for(auto val : entry->ciEntries()->bciVal()){
 					int bciVal = stoi(val->accept(this).as<string>());
-					varEntry.isRef = true;
+					varEntry.type = Reference;
 					varEntry.caller = callerIndex;
 					varEntry.bci = bciVal;
 					entries.push_back(varEntry);
@@ -80,27 +80,27 @@ antlrcpp::Any PTGBuilderVisitor::visitVars(PTGParser::VarsContext *ctx)
 			
 			if (entry->STRING() != NULL) {
 				cout << "varEntry is string" << endl;
-				varEntry.isString = true;
+				varEntry.type = String;
 				entries.push_back(varEntry);
 			} else if (entry->CONST() != NULL) {
 				cout << "varEntry is const" << endl;
-				varEntry.isConstant = true;
+				varEntry.type = Constant;
 				entries.push_back(varEntry);
 			} else if (entry->GLOBAL() != NULL) {
 				cout << "varEntry is global" << endl;
-				varEntry.isGlobal = true;
+				varEntry.type = Global;
 				entries.push_back(varEntry);
 			} else if (entry->NIL() != NULL) {
 				cout << "varEntry is null" << endl;
 				//the value is a NIL;
-				varEntry.isNull = true;
+				varEntry.type = Null;
 				entries.push_back(varEntry);
 			} else {
 				int callerIndex = entry->ciEntries()->callerIndex()->accept(this).as<int>();
 		cout << "\t there are " << entry->ciEntries()->bciVal().size() << " entries in entry->ciEntries()->bciVal()" << endl;
 				for(auto val : entry->ciEntries()->bciVal()){
 					int bciVal = stoi(val->accept(this).as<string>());
-					varEntry.isRef = true;
+				varEntry.type = Reference;
 					varEntry.caller = callerIndex;
 					varEntry.bci = bciVal;
 					entries.push_back(varEntry);

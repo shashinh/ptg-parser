@@ -8,6 +8,7 @@
 
 
 using namespace antlrcpp;
+using namespace PTG;
 using namespace antlr4;
 
 PTGParser::PTGParser(TokenStream *input) : Parser(input) {

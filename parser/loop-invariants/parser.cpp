@@ -80,13 +80,13 @@ int main(int argc, char *argv[])
 				auto vals = vIt->second;
 				for (Entry entry : vals)
 				{
-					if (entry.isNull)
+					if (entry.type == Null)
 						cout << " n";
-					else if (entry.isConstant)
+					else if (entry.type == Constant)
 						cout << " c";
-					else if (entry.isGlobal)
+					else if (entry.type == Global)
 						cout << " g";
-					else if (entry.isString)
+					else if (entry.type == String)
 						cout << " s";
 					else
 					{
@@ -110,14 +110,14 @@ int main(int argc, char *argv[])
 					cout << "\t\t" << fkIt->first << ": ";
 					for (auto entry : fkIt->second)
 					{
-						if (entry.isNull)
-							cout << " n";
-						else if (entry.isConstant)
-							cout << " c";
-						else if (entry.isGlobal)
-							cout << " g";
-						else if (entry.isString)
-							cout << " s";
+					if (entry.type == Null)
+						cout << " n";
+					else if (entry.type == Constant)
+						cout << " c";
+					else if (entry.type == Global)
+						cout << " g";
+					else if (entry.type == String)
+						cout << " s";
 						else
 						{
 							cout << " " << entry.caller << "-" << entry.bci;

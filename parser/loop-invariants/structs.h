@@ -3,14 +3,20 @@
 #include <map>
 #include <set>
 
+
 struct Entry {
-    int caller;
-    int bci;
-    bool isString = false;
-    bool isConstant = false;
-    bool isNull = false;
-    bool isGlobal = false;
-    bool isRef = false;
+    int caller = -1;
+    int bci = -1;
+
+    int type;
+};
+
+enum EntryType {
+    String,
+    Constant,
+    Null,
+    Global,
+    Reference
 };
 
 struct StaticPtg {
