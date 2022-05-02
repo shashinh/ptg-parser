@@ -5,5 +5,3 @@
 #include "PTGVisitor.h"
 
 
-using namespace PTG;
-

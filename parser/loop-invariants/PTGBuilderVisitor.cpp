@@ -4,6 +4,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
+#include "PointsToGraph.h"
 
 using namespace std;
 using namespace antlrcpp;
@@ -12,7 +13,7 @@ using namespace antlrcpp;
 antlrcpp::Any PTGBuilderVisitor::visitPtg(PTGParser::PtgContext *ctx)
 {
 	//a map of ptgs keyed by locations - represented by bci's in the method
-	std::map<int, StaticPtg> staticKeyedPtg;
+	std::map<int, PointsToGraph> staticKeyedPtg;
 	for (auto entry : ctx->entry())
 	{
 		//cout << "invoking bciKey()->accept(this)" << endl;
@@ -22,8 +23,8 @@ antlrcpp::Any PTGBuilderVisitor::visitPtg(PTGParser::PtgContext *ctx)
     std::map <int, std::map <std::string, std::vector <Entry>>> fieldsMap;
 		if(entry->fields())
 			fieldsMap = entry->fields()->accept(this).as<std::map <int, std::map <std::string, std::vector <Entry>>>>();
-		StaticPtg ptg = {varsMap, fieldsMap};
-		staticKeyedPtg.insert(std::pair <int, StaticPtg> (bci, ptg));
+		PointsToGraph ptg(varsMap, fieldsMap);
+		staticKeyedPtg.insert(std::pair <int, PointsToGraph> (bci, ptg));
 
 	}
 
@@ -37,25 +38,25 @@ std::vector<Entry> PTGBuilderVisitor::processciBciEntrys(std::vector<PTGParser::
 			Entry varEntry;
 			
 			if (entry->STRING() != NULL) {
-				cout << "varEntry is string" << endl;
+				//cout << "varEntry is string" << endl;
 				varEntry.type = String;
 				entries.push_back(varEntry);
 			} else if (entry->CONST() != NULL) {
-				cout << "varEntry is const" << endl;
+				//cout << "varEntry is const" << endl;
 				varEntry.type = Constant;
 				entries.push_back(varEntry);
 			} else if (entry->GLOBAL() != NULL) {
-				cout << "varEntry is global" << endl;
+				//cout << "varEntry is global" << endl;
 				varEntry.type = Global;
 				entries.push_back(varEntry);
 			} else if (entry->NIL() != NULL) {
-				cout << "varEntry is null" << endl;
+				//cout << "varEntry is null" << endl;
 				//the value is a NIL;
 				varEntry.type = Null;
 				entries.push_back(varEntry);
 			} else {
 				int callerIndex = entry->ciEntries()->callerIndex()->accept(this).as<int>();
-		cout << "\t there are " << entry->ciEntries()->bciVal().size() << " entries in entry->ciEntries()->bciVal()" << endl;
+		//cout << "\t there are " << entry->ciEntries()->bciVal().size() << " entries in entry->ciEntries()->bciVal()" << endl;
 				for(auto val : entry->ciEntries()->bciVal()){
 					int bciVal = stoi(val->accept(this).as<string>());
 					varEntry.type = Reference;
@@ -79,28 +80,28 @@ antlrcpp::Any PTGBuilderVisitor::visitVars(PTGParser::VarsContext *ctx)
 			Entry varEntry;
 			
 			if (entry->STRING() != NULL) {
-				cout << "varEntry is string" << endl;
+				//cout << "varEntry is string" << endl;
 				varEntry.type = String;
 				entries.push_back(varEntry);
 			} else if (entry->CONST() != NULL) {
-				cout << "varEntry is const" << endl;
+				//cout << "varEntry is const" << endl;
 				varEntry.type = Constant;
 				entries.push_back(varEntry);
 			} else if (entry->GLOBAL() != NULL) {
-				cout << "varEntry is global" << endl;
+				//cout << "varEntry is global" << endl;
 				varEntry.type = Global;
 				entries.push_back(varEntry);
 			} else if (entry->NIL() != NULL) {
-				cout << "varEntry is null" << endl;
+				//cout << "varEntry is null" << endl;
 				//the value is a NIL;
 				varEntry.type = Null;
 				entries.push_back(varEntry);
 			} else {
 				int callerIndex = entry->ciEntries()->callerIndex()->accept(this).as<int>();
-		cout << "\t there are " << entry->ciEntries()->bciVal().size() << " entries in entry->ciEntries()->bciVal()" << endl;
+		//cout << "\t there are " << entry->ciEntries()->bciVal().size() << " entries in entry->ciEntries()->bciVal()" << endl;
 				for(auto val : entry->ciEntries()->bciVal()){
 					int bciVal = stoi(val->accept(this).as<string>());
-				varEntry.type = Reference;
+					varEntry.type = Reference;
 					varEntry.caller = callerIndex;
 					varEntry.bci = bciVal;
 					entries.push_back(varEntry);
@@ -108,7 +109,7 @@ antlrcpp::Any PTGBuilderVisitor::visitVars(PTGParser::VarsContext *ctx)
 			}
 
 		}
-		cout << "inserting " << entries.size() << " entries into varsMap" << endl;
+		//cout << "inserting " << entries.size() << " entries into varsMap" << endl;
 		varsMap.insert(std::pair<int, std::vector<Entry>>(varKey, entries));
 	}
 
@@ -121,14 +122,14 @@ antlrcpp::Any PTGBuilderVisitor::visitFields(PTGParser::FieldsContext *ctx)
 
 	for(auto fieldEntry : ctx->fieldentry()){
 		int bciKey = fieldEntry->bciKey()->accept(this).as<int>();
-		cout << "bci key is " << bciKey << endl;
-		cout << "there are " << fieldEntry->field().size() << " fields" << endl;
+		//cout << "bci key is " << bciKey << endl;
+		//cout << "there are " << fieldEntry->field().size() << " fields" << endl;
 		std::map <std::string, std::vector <Entry>> map;
 		for(auto field : fieldEntry->field()){
 			std::string fieldKey = field->fieldKey()->accept(this).as<string>();
 			//std::map <std::string, std::vector <Entry>> map;
-			cout << "the fieldKey is " << fieldKey << endl;
-			cout << "there are " << field->ciBciEntry().size() << " ciBciEntrys" << endl;
+			//cout << "the fieldKey is " << fieldKey << endl;
+			//cout << "there are " << field->ciBciEntry().size() << " ciBciEntrys" << endl;
 
 			std::vector<Entry> entries = processciBciEntrys(field->ciBciEntry());
 			
@@ -172,7 +173,7 @@ antlrcpp::Any PTGBuilderVisitor::visitBciVal(PTGParser::BciValContext *ctx)
 	auto res = ctx->NUMS() != NULL ? ctx->NUMS()->toString() : ctx->NIL()->toString();
 	//cout << res << endl;
 
-	cout << "bciVal is " << res << endl;
+	//cout << "bciVal is " << res << endl;
 	return res;
 }
 
@@ -181,17 +182,17 @@ antlrcpp::Any PTGBuilderVisitor::visitBciVal(PTGParser::BciValContext *ctx)
 // 	return res;
 //   }
 
-antlrcpp::Any PTGBuilderVisitor::visitField(PTGParser::FieldContext *ctx) {
+//antlrcpp::Any PTGBuilderVisitor::visitField(PTGParser::FieldContext *ctx) {
 	// string field = ctx->fieldKey()->toString();
 	// cout << "the field key is " << field << endl;
 
 	// return field;
-  }
+  //}
 
 
 antlrcpp::Any PTGBuilderVisitor::visitCallerIndex(PTGParser::CallerIndexContext *ctx) {
     auto res = stoi(ctx->NUMS()->toString());
-	cout << "caller index is " << res << endl;
+	//cout << "caller index is " << res << endl;
 	return res;
   }
 

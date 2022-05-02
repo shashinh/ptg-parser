@@ -8,7 +8,6 @@
 #include "PTGParser.h"
 
 
-namespace PTG {
 
 /**
  * This class defines an abstract visitor for a parse tree
@@ -49,4 +48,3 @@ public:
 
 };
 
-}  // namespace PTG

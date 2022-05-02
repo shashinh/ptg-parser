@@ -7,7 +7,6 @@
 #include "antlr4-runtime.h"
 
 
-namespace PTG {
 
 
 class  PTGLexer : public antlr4::Lexer {
@@ -57,4 +56,3 @@ private:
   static Initializer _init;
 };
 
-}  // namespace PTG
