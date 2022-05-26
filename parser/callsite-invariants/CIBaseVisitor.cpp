@@ -5,5 +5,3 @@
 #include "CIBaseVisitor.h"
 
 
-using namespace CI;
-

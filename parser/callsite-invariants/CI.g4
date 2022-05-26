@@ -1,6 +1,6 @@
 grammar CI;
 
-ci: ( ciEntry (NEWLINE ciEntry)* )? (EOF);
+ci: ( ciEntry (NEWLINE ciEntry)* )? (NEWLINE|EOF);
 ciEntry: ( (ciBciEntry) (' ' (ciBciEntry))*);
 ciBciEntry2: NUMS;
 

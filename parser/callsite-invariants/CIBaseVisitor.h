@@ -8,8 +8,6 @@
 #include "CIVisitor.h"
 
 
-namespace CI {
-
 /**
  * This class provides an empty implementation of CIVisitor, which can be
  * extended to create a visitor which only needs to handle a subset of the available methods.
@@ -56,4 +54,3 @@ public:
 
 };
 
-}  // namespace CI

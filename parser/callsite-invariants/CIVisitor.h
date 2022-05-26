@@ -8,7 +8,6 @@
 #include "CIParser.h"
 
 
-namespace CI {
 
 /**
  * This class defines an abstract visitor for a parse tree
@@ -41,4 +40,3 @@ public:
 
 };
 
-}  // namespace CI

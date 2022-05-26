@@ -7,7 +7,6 @@
 
 using namespace antlr4;
 
-using namespace CI;
 
 CILexer::CILexer(CharStream *input) : Lexer(input) {
   _interpreter = new atn::LexerATNSimulator(this, _atn, _decisionToDFA, _sharedContextCache);

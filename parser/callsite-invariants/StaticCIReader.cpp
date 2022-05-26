@@ -5,10 +5,11 @@
 #include "antlr4-runtime.h"
 #include "CILexer.h"
 #include "CIParser.h"
+#include "CIBuilderVisitor.h"
+#include "structs.h"
 
 using namespace std;
 using namespace antlr4;
-using namespace CI;
 
 class CIParseErrorListener : public BaseErrorListener 
 {
@@ -22,7 +23,10 @@ class CIParseErrorListener : public BaseErrorListener
 };
 
 int readCallerInvariants(string fileName) {
+        map <int, set <Entry> > ret;
+
         ifstream ins(fileName, std::ifstream::in);
+        if(ins.fail()) throw invalid_argument("File Open Exception");
 
         ANTLRInputStream input(ins);
         try
@@ -50,10 +54,29 @@ int readCallerInvariants(string fileName) {
                          << "Parse succesful, parse tree:" << endl;
                 std::cout << tree->toStringTree(&parser) << endl;
 
+                //invoke the visitor here
+                CIParser::CiContext *ctx = parser.ci();
+
+                CIBuilderVisitor visitor;
+                ret = visitor.visitCi((CIParser::CiContext *) tree).as<map <int, set<Entry> > > ();
+
+                //now lets print out the parsed callsite invariant
+                map<int, set <Entry> > :: iterator it = ret.begin();
+                while(it != ret.end()) {
+                        cout << "arg index: " << it->first << "\n";
+                        set<Entry> entries = it->second;
+                        for(auto entry : entries) {
+                                cout << "\t" << entry.getString() << " ";
+                        }
+                        
+                        it++;
+                        cout << "\n"
+                }
+
         }
         catch (invalid_argument &ex)
         {
-                cout << "ruh roh! : " << ex.what() << endl;
+                cout << ex.what() << endl;
                 return 1;
         }
         

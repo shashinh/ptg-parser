@@ -1,5 +1,5 @@
 
-// Generated from CI.g4 by ANTLR 4.9.2
+// Generated from PTG.g4 by ANTLR 4.9.2
 
 #pragma once
 
@@ -9,15 +9,16 @@
 
 
 
-class  CILexer : public antlr4::Lexer {
+class  PTGLexer : public antlr4::Lexer {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, NIL = 4, STRING = 5, CONST = 6, GLOBAL = 7, 
-    NUMS = 8, ALPHAS = 9, NEWLINE = 10, ALL = 11
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
+    T__7 = 8, NIL = 9, STRING = 10, CONST = 11, GLOBAL = 12, NUMS = 13, 
+    ALPHAS = 14, NEWLINE = 15, ALL = 16
   };
 
-  explicit CILexer(antlr4::CharStream *input);
-  ~CILexer();
+  explicit PTGLexer(antlr4::CharStream *input);
+  ~PTGLexer();
 
   virtual std::string getGrammarFileName() const override;
   virtual const std::vector<std::string>& getRuleNames() const override;
